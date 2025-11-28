@@ -1,1 +1,830 @@
-"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[9052],{6042:function(t,e,n){async function a(t,e,n,a){let r={"Content-Type":"application/json"};if(localStorage.getItem("user_data")){let t=JSON.parse(localStorage.getItem("user_data"));void 0!==t.session_token&&(r["X-Session-Token"]=t.session_token)}return fetch("https://api.undresswith.ai"+t,{method:"POST",headers:r,body:JSON.stringify(e)}).then(t=>t.json()).then(t=>{1==t.code?n(t.data):(2==t.code&&localStorage.removeItem("user_data"),a(t.message))}).catch(t=>a(t.toString()))}async function r(t,e,n,r){a("/api/item/get_pre_url",{file_name:t,file_type:e},t=>{n(t)},t=>{r(t)})}async function i(t,e,n,a){let r=new FormData;Object.keys(t.fields).forEach(e=>{r.append(e,t.fields[e])}),r.append("file",e);try{(await fetch(t.url,{method:"POST",body:r})).ok?n(t.fields.key):a("Failed to upload file.")}catch(e){let t="Failed to upload file.";"AbortError"===e.name?t+="Upload timeout":"TypeError"===e.name?t+="Network connection error":t+=e.message||"Unknown error",a(t)}}async function o(t,e,n,a){r(t.name,e,e=>{i(e,t,n,a)},t=>{a(t)})}async function s(t,e,n,r,i){a("/api/item/create_item",{s3_path:t,width:e,height:n},t=>{r(t)},t=>{i(t)})}async function c(t,e,n){a("/api/item/get_mask",{file_path:t},t=>{e(t)},t=>{n(t)})}async function u(t,e,n,r,i,o,s){a("/api/item/inference",{uid:t,mask_path:e,prompt_id:n,prompt:r,ai_model_type:i},t=>{o(t)},t=>{s(t)})}async function f(t,e,n,r,i,o){a("/api/item/inference2",{s3_path:t,mask_path:e,prompt:n,ai_model_type:r},t=>{i(t)},t=>{o(t)})}async function p(t,e,n,r){a("/api/item/get_items",{page:t,page_size:e},t=>{n(t)},t=>{r(t)})}async function l(t,e,n){a("/api/item/get_item",{uid:t},t=>{e(t)},t=>{n(t)})}async function d(t,e,n){a("/api/item/get_item_download_url",{uid:t},t=>{e(t)},t=>{n(t)})}async function y(t,e,n){a("/api/item/delete_item",{uid:t},t=>{e(t)},t=>{n(t)})}async function _(t,e){a("/api/item/get_prompts",{},e=>{t(e)},t=>{e(t)})}async function m(t,e){a("/api/item/api_item_list",{},e=>{t(e)},t=>{e(t)})}async function S(t,e,n,r,i){a("/api/user/init_data",{token:t,code:e,login_type:n,current_uid:sessionStorage.getItem("current_uid")||""},t=>{r(t)},t=>{i(t)})}async function g(t,e){a("/api/user/logout",{},e=>{t(e)},t=>{e(t)})}async function h(t,e){a("/api/user/delete_account",{},e=>{t(e)},t=>{e(t)})}async function I(t,e,n,r,i,o){a("/api/user/save_withdrawal_settings",{real_name:t,bank_account:e,email:n,mobile:r},t=>{i(t)},t=>{o(t)})}async function w(t,e,n){a("/api/user/get_invitations",{page:t},t=>{e(t)},t=>{n(t)})}async function T(t,e,n){a("/api/user/get_commissions",{page:t},t=>{e(t)},t=>{n(t)})}async function O(t,e,n){a("/api/user/get_purchases",{page:t},t=>{e(t)},t=>{n(t)})}async function v(t,e,n){a("/api/user/get_withdrawals",{page:t},t=>{e(t)},t=>{n(t)})}async function E(t,e,n,r){a("/api/user/send_gems",{email:t,gems:e},t=>{n(t)},t=>{r(t)})}async function A(t,e){a("/api/user/get_api_key",{},e=>{t(e)},t=>{e(t)})}async function k(t,e,n){a("/api/user/create_api_key",{is_reset:t},t=>{e(t)},t=>{n(t)})}async function D(t,e,n){a("/api/user/set_white_domain",{domain:t},t=>{e(t)},t=>{n(t)})}async function P(t,e,n,r,i,o,s){a("/api/pay/create_order_for_single",{uid:t,email:e,card_number:n,expiry_date:r,cvc:i},t=>{o(t)},t=>{s(t)})}async function U(t,e){a("/api/pay/withdraw",{},e=>{t(e)},t=>{e(t)})}async function C(t,e,n){a("/api/pay/check_payin",{order_number:t},t=>{e(t)},t=>{n(t)})}async function L(t,e,n,r){a("/api/pay_crypto/create_order",{pricing_id:t,lang:e},t=>{n(t)},t=>{r(t)})}async function M(t,e,n,r,i){a("/api/payl/create_order",{pricing_id:t,lang:e,channel:n},t=>{r(t)},t=>{i(t)})}async function b(t,e,n,r){a("/api/pay/create_pp_order",{pricing_id:t,lang:e},t=>{n(t)},t=>{r(t)})}async function N(t,e,n,r,i){a("/api/payc2c/create_order",{pricing_id:t,lang:e,ch:n},t=>{r(t)},t=>{i(t)})}async function J(t,e,n,r){a("/api/paywata/create_order",{pricing_id:t,lang:e},t=>{n(t)},t=>{r(t)})}async function j(t,e,n,r){a("/api/payve/create_order",{pricing_id:t,lang:e},t=>{n(t)},t=>{r(t)})}async function V(t,e,n,r){a("/api/paywa/create_order",{pricing_id:t,lang:e},t=>{n(t)},t=>{r(t)})}async function x(t,e,n,r){a("/api/paymh/create_order",{pricing_id:t,lang:e},t=>{n(t)},t=>{r(t)})}async function R(t,e,n,r){a("/api/paytp/create_order",{pricing_id:t,lang:e},t=>{n(t)},t=>{r(t)})}n.d(e,{$f:function(){return v},A0:function(){return D},BU:function(){return O},C9:function(){return p},Dc:function(){return L},Gr:function(){return V},JS:function(){return s},Jh:function(){return M},L4:function(){return c},M:function(){return j},Q0:function(){return J},S0:function(){return o},S3:function(){return I},T9:function(){return N},VW:function(){return f},_d:function(){return u},aM:function(){return R},ce:function(){return i},gJ:function(){return b},hr:function(){return P},jM:function(){return h},k:function(){return T},pQ:function(){return x},pU:function(){return A},pl:function(){return U},ps:function(){return y},rJ:function(){return w},sA:function(){return l},sh:function(){return E},tI:function(){return k},v0:function(){return d},v_:function(){return a},w7:function(){return m},xS:function(){return g},yj:function(){return C},yp:function(){return S},zP:function(){return _}})},6564:function(t,e,n){n.d(e,{CommonProvider:function(){return s},G:function(){return c}});var a=n(7437),r=n(2265),i=n(6042);let o=(0,r.createContext)();function s(t){let{children:e,dict:n}=t,[s,c]=(0,r.useState)(null),[u,f]=(0,r.useState)(!1),[p,l]=(0,r.useState)(!1),[d,y]=(0,r.useState)(!1),[_,m]=(0,r.useState)(!0),[S,g]=(0,r.useState)(!1),[h,I]=(0,r.useState)(null),[w,T]=(0,r.useState)(!1),[O,v]=(0,r.useState)(!1),[E,A]=(0,r.useState)(!1),k=(0,r.useRef)(!1),[D,P]=(0,r.useState)(!1),[U,C]=(0,r.useState)(!1);return(0,r.useEffect)(()=>{let t=new URLSearchParams(window.location.search).get("code")||"-1";"-1"==t&&(t=localStorage.getItem("code")||"-1"),localStorage.setItem("code",t);let e=JSON.parse(localStorage.getItem("user_data"));e&&c(e)},[]),(0,a.jsx)(a.Fragment,{children:(0,a.jsx)(o.Provider,{value:{userData:s,setUserData:c,isEditing:u,setIsEditing:f,isPolicyOpen:p,setIsPolicyOpen:l,hideBottomBar:_,setHideBottomBar:m,getInviteLink:()=>null,isTopUpOpen:S,setIsTopUpOpen:g,globalLoading:h,setGlobalLoading:I,fetchUserData:(t,e,a)=>{if(k.current)return;let r=new URLSearchParams(window.location.search).get("code")||"-1";"-1"==r&&(r=localStorage.getItem("code")||"-1"),k.current=!0;let o=0;s&&""==s.email&&(o=1);let u=localStorage.getItem("app_version");(0,i.yp)(t,r,o,t=>{k.current=!1;let a=window.location.pathname;"/"==a&&(a="/en");let r="/"+n.lang;t.is_new&&100==t.gems&&!localStorage.getItem(t.code)&&a==r&&A(!0),localStorage.setItem("user_data",JSON.stringify(t)),u&&u!==t.version?(localStorage.setItem("app_version",t.version),window.location.reload(!0)):u||localStorage.setItem("app_version",t.version),c(t),e&&e(t)},t=>{k.current=!1,localStorage.removeItem("user_data"),a&&a(t)})},isPayStatusOpen:d,setIsPayStatusOpen:y,dict:n,isLoginOpen:w,setIsLoginOpen:T,isLoginSuccess:E,setIsLoginSuccess:A,isDiamondCardOpen:O,setIsDiamondCardOpen:v,termsValue:D,setTermsValue:P,contentPolicyValue:U,setContentPolicyValue:C},children:e})})}function c(){return(0,r.useContext)(o)}},6770:function(t,e,n){n.d(e,{pm:function(){return l}});var a=n(2265);let r=0,i=new Map,o=t=>{if(i.has(t))return;let e=setTimeout(()=>{i.delete(t),f({type:"REMOVE_TOAST",toastId:t})},1e6);i.set(t,e)},s=(t,e)=>{switch(e.type){case"ADD_TOAST":return{...t,toasts:[e.toast,...t.toasts].slice(0,1)};case"UPDATE_TOAST":return{...t,toasts:t.toasts.map(t=>t.id===e.toast.id?{...t,...e.toast}:t)};case"DISMISS_TOAST":{let{toastId:n}=e;return n?o(n):t.toasts.forEach(t=>{o(t.id)}),{...t,toasts:t.toasts.map(t=>t.id===n||void 0===n?{...t,open:!1}:t)}}case"REMOVE_TOAST":if(void 0===e.toastId)return{...t,toasts:[]};return{...t,toasts:t.toasts.filter(t=>t.id!==e.toastId)}}},c=[],u={toasts:[]};function f(t){u=s(u,t),c.forEach(t=>{t(u)})}function p(t){let{...e}=t,n=(r=(r+1)%Number.MAX_SAFE_INTEGER).toString(),a=()=>f({type:"DISMISS_TOAST",toastId:n});return f({type:"ADD_TOAST",toast:{...e,id:n,open:!0,onOpenChange:t=>{t||a()}}}),{id:n,dismiss:a,update:t=>f({type:"UPDATE_TOAST",toast:{...t,id:n}})}}function l(){let[t,e]=a.useState(u);return a.useEffect(()=>(c.push(e),()=>{let t=c.indexOf(e);t>-1&&c.splice(t,1)}),[t]),{...t,toast:p,dismiss:t=>f({type:"DISMISS_TOAST",toastId:t})}}},6474:function(t,e,n){n.d(e,{cn:function(){return i}});var a=n(1994),r=n(3335);function i(){for(var t=arguments.length,e=Array(t),n=0;n<t;n++)e[n]=arguments[n];return(0,r.m6)((0,a.W)(e))}}}]);
+"use strict";
+(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([[9052], {
+    6042: function(t, e, n) {
+        async function a(t, e, n, a) {
+            let r = {
+                "Content-Type": "application/json"
+            };
+            if (localStorage.getItem("user_data")) {
+                let t = JSON.parse(localStorage.getItem("user_data"));
+                void 0 !== t.session_token && (r["X-Session-Token"] = t.session_token)
+            }
+            return fetch("https://api.undresswith.ai" + t, {
+                method: "POST",
+                headers: r,
+                body: JSON.stringify(e)
+            }).then(t => t.json()).then(t => {
+                1 == t.code ? n(t.data) : (2 == t.code && localStorage.removeItem("user_data"),
+                a(t.message))
+            }
+            ).catch(t => a(t.toString()))
+        }
+        async function r(t, e, n, r) {
+            a("/api/item/get_pre_url", {
+                file_name: t,
+                file_type: e
+            }, t => {
+                n(t)
+            }
+            , t => {
+                r(t)
+            }
+            )
+        }
+        async function i(t, e, n, a) {
+            let r = new FormData;
+            Object.keys(t.fields).forEach(e => {
+                r.append(e, t.fields[e])
+            }
+            ),
+            r.append("file", e);
+            try {
+                (await fetch(t.url, {
+                    method: "POST",
+                    body: r
+                })).ok ? n(t.fields.key) : a("Failed to upload file.")
+            } catch (e) {
+                let t = "Failed to upload file.";
+                "AbortError" === e.name ? t += "Upload timeout" : "TypeError" === e.name ? t += "Network connection error" : t += e.message || "Unknown error",
+                a(t)
+            }
+        }
+        async function o(t, e, n, a) {
+            r(t.name, e, e => {
+                i(e, t, n, a)
+            }
+            , t => {
+                a(t)
+            }
+            )
+        }
+        async function s(t, e, n, r, i) {
+            a("/api/item/create_item", {
+                s3_path: t,
+                width: e,
+                height: n
+            }, t => {
+                r(t)
+            }
+            , t => {
+                i(t)
+            }
+            )
+        }
+        async function c(t, e, n) {
+            a("/api/item/get_mask", {
+                file_path: t
+            }, t => {
+                e(t)
+            }
+            , t => {
+                n(t)
+            }
+            )
+        }
+        async function u(t, e, n, r, i, o, s) {
+            a("/api/item/inference", {
+                uid: t,
+                mask_path: e,
+                prompt_id: n,
+                prompt: r,
+                ai_model_type: i
+            }, t => {
+                o(t)
+            }
+            , t => {
+                s(t)
+            }
+            )
+        }
+        async function f(t, e, n, r, i, o) {
+            a("/api/item/inference2", {
+                s3_path: t,
+                mask_path: e,
+                prompt: n,
+                ai_model_type: r
+            }, t => {
+                i(t)
+            }
+            , t => {
+                o(t)
+            }
+            )
+        }
+        async function p(t, e, n, r) {
+            a("/api/item/get_items", {
+                page: t,
+                page_size: e
+            }, t => {
+                n(t)
+            }
+            , t => {
+                r(t)
+            }
+            )
+        }
+        async function l(t, e, n) {
+            a("/api/item/get_item", {
+                uid: t
+            }, t => {
+                e(t)
+            }
+            , t => {
+                n(t)
+            }
+            )
+        }
+        async function d(t, e, n) {
+            a("/api/item/get_item_download_url", {
+                uid: t
+            }, t => {
+                e(t)
+            }
+            , t => {
+                n(t)
+            }
+            )
+        }
+        async function y(t, e, n) {
+            a("/api/item/delete_item", {
+                uid: t
+            }, t => {
+                e(t)
+            }
+            , t => {
+                n(t)
+            }
+            )
+        }
+        async function _(t, e) {
+            a("/api/item/get_prompts", {}, e => {
+                t(e)
+            }
+            , t => {
+                e(t)
+            }
+            )
+        }
+        async function m(t, e) {
+            a("/api/item/api_item_list", {}, e => {
+                t(e)
+            }
+            , t => {
+                e(t)
+            }
+            )
+        }
+        async function S(t, e, n, r, i) {
+            a("/api/user/init_data", {
+                token: t,
+                code: e,
+                login_type: n,
+                current_uid: sessionStorage.getItem("current_uid") || ""
+            }, t => {
+                r(t)
+            }
+            , t => {
+                i(t)
+            }
+            )
+        }
+        async function g(t, e) {
+            a("/api/user/logout", {}, e => {
+                t(e)
+            }
+            , t => {
+                e(t)
+            }
+            )
+        }
+        async function h(t, e) {
+            a("/api/user/delete_account", {}, e => {
+                t(e)
+            }
+            , t => {
+                e(t)
+            }
+            )
+        }
+        async function I(t, e, n, r, i, o) {
+            a("/api/user/save_withdrawal_settings", {
+                real_name: t,
+                bank_account: e,
+                email: n,
+                mobile: r
+            }, t => {
+                i(t)
+            }
+            , t => {
+                o(t)
+            }
+            )
+        }
+        async function w(t, e, n) {
+            a("/api/user/get_invitations", {
+                page: t
+            }, t => {
+                e(t)
+            }
+            , t => {
+                n(t)
+            }
+            )
+        }
+        async function T(t, e, n) {
+            a("/api/user/get_commissions", {
+                page: t
+            }, t => {
+                e(t)
+            }
+            , t => {
+                n(t)
+            }
+            )
+        }
+        async function O(t, e, n) {
+            a("/api/user/get_purchases", {
+                page: t
+            }, t => {
+                e(t)
+            }
+            , t => {
+                n(t)
+            }
+            )
+        }
+        async function v(t, e, n) {
+            a("/api/user/get_withdrawals", {
+                page: t
+            }, t => {
+                e(t)
+            }
+            , t => {
+                n(t)
+            }
+            )
+        }
+        async function E(t, e, n, r) {
+            a("/api/user/send_gems", {
+                email: t,
+                gems: e
+            }, t => {
+                n(t)
+            }
+            , t => {
+                r(t)
+            }
+            )
+        }
+        async function A(t, e) {
+            a("/api/user/get_api_key", {}, e => {
+                t(e)
+            }
+            , t => {
+                e(t)
+            }
+            )
+        }
+        async function k(t, e, n) {
+            a("/api/user/create_api_key", {
+                is_reset: t
+            }, t => {
+                e(t)
+            }
+            , t => {
+                n(t)
+            }
+            )
+        }
+        async function D(t, e, n) {
+            a("/api/user/set_white_domain", {
+                domain: t
+            }, t => {
+                e(t)
+            }
+            , t => {
+                n(t)
+            }
+            )
+        }
+        async function P(t, e, n, r, i, o, s) {
+            a("/api/pay/create_order_for_single", {
+                uid: t,
+                email: e,
+                card_number: n,
+                expiry_date: r,
+                cvc: i
+            }, t => {
+                o(t)
+            }
+            , t => {
+                s(t)
+            }
+            )
+        }
+        async function U(t, e) {
+            a("/api/pay/withdraw", {}, e => {
+                t(e)
+            }
+            , t => {
+                e(t)
+            }
+            )
+        }
+        async function C(t, e, n) {
+            a("/api/pay/check_payin", {
+                order_number: t
+            }, t => {
+                e(t)
+            }
+            , t => {
+                n(t)
+            }
+            )
+        }
+        async function L(t, e, n, r) {
+            a("/api/pay_crypto/create_order", {
+                pricing_id: t,
+                lang: e
+            }, t => {
+                n(t)
+            }
+            , t => {
+                r(t)
+            }
+            )
+        }
+        async function M(t, e, n, r, i) {
+            a("/api/payl/create_order", {
+                pricing_id: t,
+                lang: e,
+                channel: n
+            }, t => {
+                r(t)
+            }
+            , t => {
+                i(t)
+            }
+            )
+        }
+        async function b(t, e, n, r) {
+            a("/api/pay/create_pp_order", {
+                pricing_id: t,
+                lang: e
+            }, t => {
+                n(t)
+            }
+            , t => {
+                r(t)
+            }
+            )
+        }
+        async function N(t, e, n, r, i) {
+            a("/api/payc2c/create_order", {
+                pricing_id: t,
+                lang: e,
+                ch: n
+            }, t => {
+                r(t)
+            }
+            , t => {
+                i(t)
+            }
+            )
+        }
+        async function J(t, e, n, r) {
+            a("/api/paywata/create_order", {
+                pricing_id: t,
+                lang: e
+            }, t => {
+                n(t)
+            }
+            , t => {
+                r(t)
+            }
+            )
+        }
+        async function j(t, e, n, r) {
+            a("/api/payve/create_order", {
+                pricing_id: t,
+                lang: e
+            }, t => {
+                n(t)
+            }
+            , t => {
+                r(t)
+            }
+            )
+        }
+        async function V(t, e, n, r) {
+            a("/api/paywa/create_order", {
+                pricing_id: t,
+                lang: e
+            }, t => {
+                n(t)
+            }
+            , t => {
+                r(t)
+            }
+            )
+        }
+        async function x(t, e, n, r) {
+            a("/api/paymh/create_order", {
+                pricing_id: t,
+                lang: e
+            }, t => {
+                n(t)
+            }
+            , t => {
+                r(t)
+            }
+            )
+        }
+        async function R(t, e, n, r) {
+            a("/api/paytp/create_order", {
+                pricing_id: t,
+                lang: e
+            }, t => {
+                n(t)
+            }
+            , t => {
+                r(t)
+            }
+            )
+        }
+        n.d(e, {
+            $f: function() {
+                return v
+            },
+            A0: function() {
+                return D
+            },
+            BU: function() {
+                return O
+            },
+            C9: function() {
+                return p
+            },
+            Dc: function() {
+                return L
+            },
+            Gr: function() {
+                return V
+            },
+            JS: function() {
+                return s
+            },
+            Jh: function() {
+                return M
+            },
+            L4: function() {
+                return c
+            },
+            M: function() {
+                return j
+            },
+            Q0: function() {
+                return J
+            },
+            S0: function() {
+                return o
+            },
+            S3: function() {
+                return I
+            },
+            T9: function() {
+                return N
+            },
+            VW: function() {
+                return f
+            },
+            _d: function() {
+                return u
+            },
+            aM: function() {
+                return R
+            },
+            ce: function() {
+                return i
+            },
+            gJ: function() {
+                return b
+            },
+            hr: function() {
+                return P
+            },
+            jM: function() {
+                return h
+            },
+            k: function() {
+                return T
+            },
+            pQ: function() {
+                return x
+            },
+            pU: function() {
+                return A
+            },
+            pl: function() {
+                return U
+            },
+            ps: function() {
+                return y
+            },
+            rJ: function() {
+                return w
+            },
+            sA: function() {
+                return l
+            },
+            sh: function() {
+                return E
+            },
+            tI: function() {
+                return k
+            },
+            v0: function() {
+                return d
+            },
+            v_: function() {
+                return a
+            },
+            w7: function() {
+                return m
+            },
+            xS: function() {
+                return g
+            },
+            yj: function() {
+                return C
+            },
+            yp: function() {
+                return S
+            },
+            zP: function() {
+                return _
+            }
+        })
+    },
+    6564: function(t, e, n) {
+        n.d(e, {
+            CommonProvider: function() {
+                return s
+            },
+            G: function() {
+                return c
+            }
+        });
+        var a = n(7437)
+          , r = n(2265)
+          , i = n(6042);
+        let o = (0,
+        r.createContext)();
+        function s(t) {
+            let {children: e, dict: n} = t
+              , [s,c] = (0,
+            r.useState)(null)
+              , [u,f] = (0,
+            r.useState)(!1)
+              , [p,l] = (0,
+            r.useState)(!1)
+              , [d,y] = (0,
+            r.useState)(!1)
+              , [_,m] = (0,
+            r.useState)(!0)
+              , [S,g] = (0,
+            r.useState)(!1)
+              , [h,I] = (0,
+            r.useState)(null)
+              , [w,T] = (0,
+            r.useState)(!1)
+              , [O,v] = (0,
+            r.useState)(!1)
+              , [E,A] = (0,
+            r.useState)(!1)
+              , k = (0,
+            r.useRef)(!1)
+              , [D,P] = (0,
+            r.useState)(!1)
+              , [U,C] = (0,
+            r.useState)(!1);
+            return (0,
+            r.useEffect)( () => {
+                let t = new URLSearchParams(window.location.search).get("code") || "-1";
+                "-1" == t && (t = localStorage.getItem("code") || "-1"),
+                localStorage.setItem("code", t);
+                let e = JSON.parse(localStorage.getItem("user_data"));
+                e && c(e)
+            }
+            , []),
+            (0,
+            a.jsx)(a.Fragment, {
+                children: (0,
+                a.jsx)(o.Provider, {
+                    value: {
+                        userData: s,
+                        setUserData: c,
+                        isEditing: u,
+                        setIsEditing: f,
+                        isPolicyOpen: p,
+                        setIsPolicyOpen: l,
+                        hideBottomBar: _,
+                        setHideBottomBar: m,
+                        getInviteLink: () => null,
+                        isTopUpOpen: S,
+                        setIsTopUpOpen: g,
+                        globalLoading: h,
+                        setGlobalLoading: I,
+                        fetchUserData: (t, e, a) => {
+                            if (k.current)
+                                return;
+                            let r = new URLSearchParams(window.location.search).get("code") || "-1";
+                            "-1" == r && (r = localStorage.getItem("code") || "-1"),
+                            k.current = !0;
+                            let o = 0;
+                            s && "" == s.email && (o = 1);
+                            let u = localStorage.getItem("app_version");
+                            (0,
+                            i.yp)(t, r, o, t => {
+                                k.current = !1;
+                                let a = window.location.pathname;
+                                "/" == a && (a = "/en");
+                                let r = "/" + n.lang;
+                                t.is_new && 10000 == t.gems && !localStorage.getItem(t.code) && a == r && A(!0),
+                                localStorage.setItem("user_data", JSON.stringify(t)),
+                                u && u !== t.version ? (localStorage.setItem("app_version", t.version),
+                                window.location.reload(!0)) : u || localStorage.setItem("app_version", t.version),
+                                c(t),
+                                e && e(t)
+                            }
+                            , t => {
+                                k.current = !1,
+                                localStorage.removeItem("user_data"),
+                                a && a(t)
+                            }
+                            )
+                        }
+                        ,
+                        isPayStatusOpen: d,
+                        setIsPayStatusOpen: y,
+                        dict: n,
+                        isLoginOpen: w,
+                        setIsLoginOpen: T,
+                        isLoginSuccess: E,
+                        setIsLoginSuccess: A,
+                        isDiamondCardOpen: O,
+                        setIsDiamondCardOpen: v,
+                        termsValue: D,
+                        setTermsValue: P,
+                        contentPolicyValue: U,
+                        setContentPolicyValue: C
+                    },
+                    children: e
+                })
+            })
+        }
+        function c() {
+            return (0,
+            r.useContext)(o)
+        }
+    },
+    6770: function(t, e, n) {
+        n.d(e, {
+            pm: function() {
+                return l
+            }
+        });
+        var a = n(2265);
+        let r = 0
+          , i = new Map
+          , o = t => {
+            if (i.has(t))
+                return;
+            let e = setTimeout( () => {
+                i.delete(t),
+                f({
+                    type: "REMOVE_TOAST",
+                    toastId: t
+                })
+            }
+            , 1e6);
+            i.set(t, e)
+        }
+          , s = (t, e) => {
+            switch (e.type) {
+            case "ADD_TOAST":
+                return {
+                    ...t,
+                    toasts: [e.toast, ...t.toasts].slice(0, 1)
+                };
+            case "UPDATE_TOAST":
+                return {
+                    ...t,
+                    toasts: t.toasts.map(t => t.id === e.toast.id ? {
+                        ...t,
+                        ...e.toast
+                    } : t)
+                };
+            case "DISMISS_TOAST":
+                {
+                    let {toastId: n} = e;
+                    return n ? o(n) : t.toasts.forEach(t => {
+                        o(t.id)
+                    }
+                    ),
+                    {
+                        ...t,
+                        toasts: t.toasts.map(t => t.id === n || void 0 === n ? {
+                            ...t,
+                            open: !1
+                        } : t)
+                    }
+                }
+            case "REMOVE_TOAST":
+                if (void 0 === e.toastId)
+                    return {
+                        ...t,
+                        toasts: []
+                    };
+                return {
+                    ...t,
+                    toasts: t.toasts.filter(t => t.id !== e.toastId)
+                }
+            }
+        }
+          , c = []
+          , u = {
+            toasts: []
+        };
+        function f(t) {
+            u = s(u, t),
+            c.forEach(t => {
+                t(u)
+            }
+            )
+        }
+        function p(t) {
+            let {...e} = t
+              , n = (r = (r + 1) % Number.MAX_SAFE_INTEGER).toString()
+              , a = () => f({
+                type: "DISMISS_TOAST",
+                toastId: n
+            });
+            return f({
+                type: "ADD_TOAST",
+                toast: {
+                    ...e,
+                    id: n,
+                    open: !0,
+                    onOpenChange: t => {
+                        t || a()
+                    }
+                }
+            }),
+            {
+                id: n,
+                dismiss: a,
+                update: t => f({
+                    type: "UPDATE_TOAST",
+                    toast: {
+                        ...t,
+                        id: n
+                    }
+                })
+            }
+        }
+        function l() {
+            let[t,e] = a.useState(u);
+            return a.useEffect( () => (c.push(e),
+            () => {
+                let t = c.indexOf(e);
+                t > -1 && c.splice(t, 1)
+            }
+            ), [t]),
+            {
+                ...t,
+                toast: p,
+                dismiss: t => f({
+                    type: "DISMISS_TOAST",
+                    toastId: t
+                })
+            }
+        }
+    },
+    6474: function(t, e, n) {
+        n.d(e, {
+            cn: function() {
+                return i
+            }
+        });
+        var a = n(1994)
+          , r = n(3335);
+        function i() {
+            for (var t = arguments.length, e = Array(t), n = 0; n < t; n++)
+                e[n] = arguments[n];
+            return (0,
+            r.m6)((0,
+            a.W)(e))
+        }
+    }
+}]);
